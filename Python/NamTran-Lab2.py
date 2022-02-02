@@ -23,6 +23,7 @@
 
 # Please define all the needed input variables in your main function directly and not asking for
 # user input. Also, please format the output from each function and print them out in the main.
+import random
 
 '''
  1. Input: Count
@@ -36,7 +37,7 @@
 def easy_hello_loop1_for(Count):
     i = 0
     while i < Count:
-        print("hello")
+        print("%dth hello\n" % i)
         i += 1
 
 
@@ -60,7 +61,7 @@ def smaller_value(x, y):
 
 
 def my_len(lis):
-    count = 0
+    count = 1
     for element in lis:
         count += 1
     return count
@@ -80,11 +81,13 @@ You can use len() in this question.
 
 
 def cate_letters(LongStr):
-    letter2, letter3, letter4 = []
+    letter2 = []
+    letter3 = []
+    letter4 = []
     for element in LongStr:
-        if element.len() < 3:
+        if len(element) < 3:
             letter2.append(element)
-        elif element.len() < 4:
+        elif len(element) < 4:
             letter3.append(element)
         else:
             letter4.append(element)
@@ -127,6 +130,7 @@ def two_strings2(str1, str2):
             evenStr += str1[i]
         else:
             oddStr += str1[i]
+        i += 1
     return evenStr, oddStr
 
 
@@ -174,7 +178,19 @@ Sample: [0,2,0,1,3,1,4,5,2,5] should return "Legit"
         [0,2,0,1,3,1,4,5,2,3] should return "Not Legit"
 
 '''
-# def check_legit_ISBN(ISBNLis):
+
+
+def check_legit_ISBN(ISBNLis):
+    sum = 0
+    i = len(ISBNLis)
+    for number in ISBNLis:
+        sum += number * i
+        i -= 1
+    if sum % 11 == 0:
+        return "Legit"
+    else:
+        return "Not Legit"
+
 
 '''
 Helper func 2: format output
@@ -183,7 +199,15 @@ output: format it to the correct ISBN format and return it
 Sample:
 [0,2,0,1,3,1,4,5,2,5] will become: "ISBN 020131452-5"
 '''
-# def format_ISBN(ISBNLis):
+
+
+def format_ISBN(ISBNLis):
+    formatted_str = ""
+    for number in ISBNLis:
+        formatted_str += str(number)
+    formatted_str = formatted_str[:9] + "-" + formatted_str[9:]
+    return formatted_str
+
 
 '''
 Helper func 3: checksum_ISBN
@@ -193,7 +217,23 @@ Hint: just loop through 0,1,2...X (X represents 10), test every one with helper 
 with the correct ISBN in lis (10 numbers), call helper func2 to format it correctly. Then print the final result.
 (Technical googling practice - google how to append or remove an element from a list)
 '''
-# def checksum_ISBN(partISBN):
+
+
+def checksum_ISBN(partISBN):
+    checksum_digit = 0
+    ISBN_lis = []
+    ISBN = ""
+    num = 0
+    while num < 11:
+        partISBN.append(num)
+        if check_legit_ISBN(partISBN) == "Legit":
+            checksum_digit = num
+            ISBN_lis = partISBN
+            ISBN = format_ISBN(ISBN_lis)
+        partISBN.pop()
+        num += 1
+    print("The correct checksum digit is: %d. Now we have a legit ISBN: %s" %
+          (checksum_digit, ISBN))
 
 
 '''
@@ -209,9 +249,52 @@ The correct checksum digit is:8. Now we have a legit ISBN:123456789-8
 The correct checksum digit is:8. Now we have a legit ISBN:987654321-8 
 etc.
 '''
-# def generate_ten_ISBNs():
+
+
+def generate_ten_ISBNs():
+    num_list = []
+    count = 0
+    i = 0
+    j = 0
+    while i < 10:
+        while j < 9:
+            num_list.append(random.randint(0, 9))
+            j += 1
+        if j == 9:
+            j = 0
+        checksum_ISBN(num_list)
+        num_list.clear()
+        i += 1
+
 
 if __name__ == '__main__':
+    my_list = ['hello', 'world', 'xin', 'chao', 'user']
+    my_list1 = ['ab', 'cd', 'cdf', 'arf', 'artg', 'seqd']
     print("****Question 1****")
-    # you can add your functions calls here
-    # Please keep all the function calls and result printing
+    easy_hello_loop1_for(5)
+    print("****Question 2****")
+    print("Smaller value between 4 and 9: ")
+    print(smaller_value(4, 9))
+    print("****Question 3****")
+    print(my_list1)
+    print("Length: " + str(my_len(my_list)))
+    print("****Question 4****")
+    cate_letters(my_list1)
+    print("****Question 5****")
+    print("abcdef and 012345")
+    two_strings1("abcdef", "012345")
+    print("****Question 6****")
+    odd_str, even_str = two_strings2("abcdef", "012345")
+    print("Odd strings:" + odd_str)
+    print("Even strings:" + even_str)
+    print("****Question 7****")
+    print("love6(5,11) return")
+    print(love6(5, 11))
+    print("love6(3,7) return")
+    print(love6(3, 7))
+    print("love6(6,8) return")
+    print(love6(6, 8))
+    print("love6(1,-5) return")
+    print(love6(6, 8))
+    print("****Question 8****")
+    generate_ten_ISBNs()
