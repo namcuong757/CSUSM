@@ -65,15 +65,15 @@ def mylis():
 #####
 
 
-def printstr(input_str1, input_int1):
+def printstr(user_input_str1, user_input_int1):
     # convert int into string and append the int with the string to form a long string
     # (technical googling practice -- google what func to use)
-    converted_int = str(input_int1)
-    long_string = input_str1 + converted_int
+    converted_int = str(user_input_int1)
+    long_string = user_input_str1 + converted_int
     # print the long str out
     print(long_string)
 
-# In the main function, define an input string and an input int.
+# In the main function, define an user_input string and an user_input int.
 # Pass them in as parameters to the function. Call and run the function to see results.
 
 ####
@@ -81,12 +81,12 @@ def printstr(input_str1, input_int1):
 ####
 
 
-def funcvars(inputvar1, inputvar2):
-    # add the input numbers together
+def funcvars(user_inputvar1, user_inputvar2):
+    # add the user_input numbers together
     # returen the result
-    return inputvar1 + inputvar2
+    return user_inputvar1 + user_inputvar2
 
-# Define the input variables in main, pass them into the function.
+# Define the user_input variables in main, pass them into the function.
 # In main, use a result variable to receive the result from funcvars and print the result out
 
 ####
@@ -95,7 +95,7 @@ def funcvars(inputvar1, inputvar2):
 
 
 def go_over_list(mylis):
-    # use for loop to go over the input list and print out items one by one
+    # use for loop to go over the user_input list and print out items one by one
     for item in mylis:
         print(item)
 
@@ -116,14 +116,14 @@ def go_over_list2(mylis):
 def go_over_list3(mylis):
     # create an empty list resLis
     res_lis = []
-    # go over items in the input list, multiply 2 to every item
+    # go over items in the user_input list, multiply 2 to every item
     # add result one by one to resLis
     for item in mylis:
         res_lis.append(item * 2)
     # return resLis
     return res_lis
 
-# Call all the functions in main. Provide necessary inputs to the functions.
+# Call all the functions in main. Provide necessary user_inputs to the functions.
 # For those with return values, print the return values out in main.
 
 ####
@@ -178,13 +178,13 @@ if __name__ == "__main__":  # a quick way to type this line is: type "main" and 
     print("****Question 3****")
     mylis()
     print("****Question 4****")
-    str_input = "Hello World"
-    int_input = 123
-    printstr(str_input, int_input)
+    str_user_input = "Hello World"
+    int_user_input = 123
+    printstr(str_user_input, int_user_input)
     print("****Question 5****")
-    input1 = 30
-    input2 = 50
-    result = funcvars(input1, input2)
+    user_input1 = 30
+    user_input2 = 50
+    result = funcvars(user_input1, user_input2)
     print(result)
     print("****Question 6****")
     my_list = [1, 2, 3, 4, 5]
