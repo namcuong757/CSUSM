@@ -71,12 +71,12 @@ def cutonelinetokens(string):
 if __name__ == "__main__":
     print("input: int    A1=5")
     cutonelinetokens("int    A1=5")
-    print("float BBB2     =1034.2")
+    print("input: float BBB2     =1034.2")
     cutonelinetokens("float BBB2     =1034.2")
-    print("float     cresult     =     A1     +BBB2     *      BBB2")
+    print("input: float     cresult     =     A1     +BBB2     *      BBB2")
     cutonelinetokens(
         "float     cresult     =     A1     +BBB2     *      BBB2")
-    print("if     (cresult     >10):")
+    print("input: if     (cresult     >10):")
     cutonelinetokens("if     (cresult     >10):")
-    print('print("TinyPie    "    )')
+    print('input: print("TinyPie    "    )')
     cutonelinetokens('print("TinyPie    "    )')
