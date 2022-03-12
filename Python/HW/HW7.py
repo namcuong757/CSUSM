@@ -4,7 +4,6 @@ from turtle import width
 import re
 
 inToken = ("empty", "empty")
-parse_tree = ""
 
 
 class LexGUI:
