@@ -160,7 +160,7 @@ class LexGUI:
     def accept_token(self, Mytokens):
         global inToken
         self.tree_txt.insert(
-            INSERT, "     accept token from the list:"+inToken[1])
+            INSERT, "     accept token from the list:"+inToken[1] + "\n")
         inToken = Mytokens.pop(0)
 
     def multi(self, Mytokens):
@@ -234,6 +234,9 @@ class LexGUI:
         if(inToken[1] == "="):
             self.tree_txt.insert(
                 INSERT, "child node (token):"+inToken[1] + "\n")
+            self.tree_txt.insert(
+                INSERT, "   keyword has child node (token):"+token + "\n")
+            self.accept_token(Mytokens)
             self.accept_token(Mytokens)
         else:
             self.tree_txt.insert(
