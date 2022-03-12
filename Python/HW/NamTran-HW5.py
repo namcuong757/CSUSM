@@ -70,7 +70,7 @@ class LexGUI:
             id_reg = re.compile(r"([A-Za-z]+\d+)|([A-Za-z]+)")
             int_reg = re.compile(r"(?<![\d.])[0-9]+(?![\d.])")
             float_reg = re.compile(r"\d+\.\d+")
-            string_reg = re.compile(r'[A-Za-z]+')
+            string_reg = re.compile(r'^[\w\s\d]+(?=”)')
 
             keyw_token = keyw_reg.match(string)
             ope_token = ope_reg.match(string)
@@ -97,6 +97,12 @@ class LexGUI:
                 result.append(new_string2)
                 string = string.replace(sep_token.group(0), ' ', 1)
                 string = string.lstrip()
+            # string lit
+            elif(string_token != None):
+                new_string6 = "<string literal, " + string_token.group(0) + ">"
+                result.append(new_string6)
+                string = string.replace(string_token.group(0), '', 1)
+                string = string.lstrip()
             # identifier
             elif(id_token != None):
                 new_string3 = "<identifier, " + id_token.group(0) + ">"
@@ -114,12 +120,6 @@ class LexGUI:
                 new_string5 = "<float literal, " + float_token.group(0) + ">"
                 result.append(new_string5)
                 string = string.replace(float_token.group(0), '', 1)
-                string = string.lstrip()
-            # string lit
-            elif(string_token != None):
-                new_string6 = "<string literal, " + string_token.group(0) + ">"
-                result.append(new_string6)
-                string = string.replace(string_token.group(0), '', 1)
                 string = string.lstrip()
             else:
                 print("Cannot process input: ")
